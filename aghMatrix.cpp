@@ -46,28 +46,48 @@ void aghMatrix<T>::setItems(const T *values) {
 }
 
 template<class T>
-aghMatrix aghMatrix<T>::operator+(const aghMatrix &matrix) {
+aghMatrix aghMatrix<T>::add(const aghMatrix &matrix) const {
 
 }
 
 template<class T>
-aghMatrix aghMatrix<T>::operator-(const aghMatrix &matrix) {
+aghMatrix aghMatrix<T>::subtract(const aghMatrix &matrix) const {
 
 }
 
 template<class T>
-aghMatrix aghMatrix<T>::operator*(const aghMatrix &matrix) {
+aghMatrix aghMatrix<T>::multiply(const aghMatrix &matrix) const {
 
 }
 
 template<class T>
-bool aghMatrix<T>::operator==(const aghMatrix &matrix) {
+bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
 
 }
 
 template<class T>
-bool aghMatrix<T>::operator!=(const aghMatrix &matrix) {
+aghMatrix aghMatrix<T>::operator+(const aghMatrix &matrix) const {
+  return this->add(matrix);
+}
 
+template<class T>
+aghMatrix aghMatrix<T>::operator-(const aghMatrix &matrix) const {
+  return this->subtract(matrix);
+}
+
+template<class T>
+aghMatrix aghMatrix<T>::operator*(const aghMatrix &matrix) const {
+  return this->multiply(matrix);
+}
+
+template<class T>
+bool aghMatrix<T>::operator==(const aghMatrix &matrix) const {
+  return this->equal(matrix);
+}
+
+template<class T>
+bool aghMatrix<T>::operator!=(const aghMatrix &matrix) const {
+  return !(this->equal(matrix));
 }
 
 template<class T>

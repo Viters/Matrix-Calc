@@ -19,15 +19,23 @@ public:
 
     void setItems(const T * value);
 
-    aghMatrix operator+(const aghMatrix &matrix);
+    aghMatrix add(const aghMatrix &matrix) const;
 
-    aghMatrix operator-(const aghMatrix &matrix);
+    aghMatrix subtract(const aghMatrix &matrix) const;
 
-    aghMatrix operator*(const aghMatrix &matrix);
+    aghMatrix multiply(const aghMatrix &matrix) const;
 
-    bool operator==(const aghMatrix &matrix);
+    bool equal(const aghMatrix &matrix) const;
 
-    bool operator!=(const aghMatrix &matrix);
+    aghMatrix operator+(const aghMatrix &matrix) const;
+
+    aghMatrix operator-(const aghMatrix &matrix) const;
+
+    aghMatrix operator*(const aghMatrix &matrix) const;
+
+    bool operator==(const aghMatrix &matrix) const;
+
+    bool operator!=(const aghMatrix &matrix) const;
 
     aghMatrix& operator=(const aghMatrix &matrix);
 private:
