@@ -5,6 +5,6 @@
 
 using namespace std;
 
-string union(const string &a, const string &b);
+string combineCollections(const string &a, const string &b);
 
 #endif
