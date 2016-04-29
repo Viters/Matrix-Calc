@@ -10,11 +10,11 @@ class aghComplex{
         aghComplex(const double re, const double im);
         double getRe() const;
         double getIm() const;
-        double operator+(const aghComplex &another);
-        double operator-(const aghComplex &another);
-        double operator*(const aghComplex &another);
-        bool operator==(const aghComplex &another);
-        bool operator!=(const aghComplex &another);
+        aghComplex operator+(const aghComplex &another) const;
+        aghComplex operator-(const aghComplex &another) const;
+        aghComplex operator*(const aghComplex &another) const;
+        bool operator==(const aghComplex &another) const;
+        bool operator!=(const aghComplex &another) const;
 }
 
 #endif

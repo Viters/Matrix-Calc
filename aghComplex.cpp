@@ -12,10 +12,23 @@ double aghComplex::getIm() const{
     return this->im;
 }
 
-double aghComplex::operator+(const aghComplex &another){
+aghComplex aghComplex::operator+(const aghComplex &another) const{
     return aghComplex( this->re + another.re, this->im + another.im);
 }
 
-double aghComplex::operator-(const aghComplex &another){
+aghComplex aghComplex::operator-(const aghComplex &another) const{
     return aghComplex( this->re - another.re, this->im - another.im);
+}
+
+aghComplex aghComplex::operator*(const aghComplex &another) const{
+    return aghComplex( this->re * another.re - this->im * another.im,
+                       this->im * another.re + this->im * another.re);
+}
+
+bool operator==(const aghComplex &another) const{
+    return (this->re == another.re) && (this->im == another.im);
+}
+
+bool operator!=(const aghComplex &another) const{
+    return (this->re != another.re) || (this->im != another.im);
 }
