@@ -67,19 +67,27 @@ void aghMatrix<T>::setItems(const T *values) {
             this->matrixPtr[i][j] = values[elem];
             elem++;
         }
+
+    return;
 }
 
 template<class T>
 void aghMatrix<T>::setItems(const int rows, const int cols, ...) {
+    int elemNum = rows * cols;
+    if (elemNum > this->rows * this->cols)
+        throw aghException(2, "Too many items for that matrix to hold", __FILE__, __LINE__);
+
     va_list ap;
     va_start(ap, cols);
 
     int elem = 0;
-    for (int i = 0; i < this->rows && elem < rows * cols; ++i)
-        for (int j = 0; j < this->cols && elem < rows * cols; ++j) {
+    for (int i = 0; i < this->rows && elem < elemNum; ++i)
+        for (int j = 0; j < this->cols && elem < elemNum; ++j) {
             this->matrixPtr[i][j] = va_arg(ap, T);
             elem++;
         }
+
+    return;
 }
 
 template<class T>
