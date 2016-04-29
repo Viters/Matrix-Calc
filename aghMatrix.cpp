@@ -76,10 +76,13 @@ aghMatrix aghMatrix<T>::add(const aghMatrix &matrix) const {
     if (!equalRows || !equalCols)
         throw aghException(1, "Tried to add matrices with wrong dimensions!", __FILE__, __LINE__);
 
+    aghMatrix <T>newMatrix(this->rows, this->cols);
+
     for (int i = 0; i < this->rows; ++i)
-        for (int j = 0; j < this->cols; ++j) {
-            this->matrixPtr[i][j] = matrix->getItem(i, j);
-        }
+        for (int j = 0; j < this->cols; ++j)
+            newMatrix.setItem(i, j, this->matrixPtr[i][j] + matrix->getItem(i, j));
+
+    return newMatrix;
 }
 
 template<class T>
