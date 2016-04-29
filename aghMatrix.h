@@ -6,24 +6,25 @@
 
 using namespace std;
 
-template <class T> class aghMatrix {
+template<class T>
+class aghMatrix {
 public:
-	aghMatrix();
+    aghMatrix();
 
-	aghMatrix(int rows, int cols);
+    aghMatrix(const int rows, const int cols);
 
-	~aghMatrix();
+    ~aghMatrix();
 
-	void setItem(int row, int col, T value);
+    void setItem(const int row, const int col, const T &value);
 
-	//void setItems();
+    void setItems(const T * value);
 private:
-	T ** matrixPtr;
-	int rows;
-	int cols;
+    T **matrixPtr;
+    int rows;
+    int cols;
 
     void createMatrix(int row, int col);
-}; 
+};
 
 
 #endif
