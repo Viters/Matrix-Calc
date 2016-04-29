@@ -121,7 +121,15 @@ aghMatrix aghMatrix<T>::multiply(const aghMatrix &matrix) const {
 
 template<class T>
 bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
+    if (this->checkRowCol(row, col))
+        return false;
+        
+    for (int i = 0; i < this->rows; ++i)
+        for (int j = 0; j < this->cols; ++j)
+            if (this->matrixPtr[i][j] != matrix.getItem(i, j))
+                return false;
 
+    return true;
 }
 
 template<class T>
