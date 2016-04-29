@@ -70,6 +70,19 @@ void aghMatrix<T>::setItems(const T *values) {
 }
 
 template<class T>
+void aghMatrix<T>::setItems(const int rows, const int cols, ...) {
+    va_list ap;
+    va_start(ap, cols);
+
+    int elem = 0;
+    for (int i = 0; i < this->rows && elem < rows * cols; ++i)
+        for (int j = 0; j < this->cols && elem < rows * cols; ++j) {
+            this->matrixPtr[i][j] = va_arg(ap, T);
+            elem++;
+        }
+}
+
+template<class T>
 aghMatrix aghMatrix<T>::add(const aghMatrix &matrix) const {
     bool equalRows = this->rows == matrix.getRows();
     bool equalCols = this->cols == matrix.getCols();

@@ -3,6 +3,7 @@
 
 #include "aghException.h"
 #include <iostream>
+#include <cstdarg>
 
 using namespace std;
 
@@ -24,6 +25,8 @@ public:
     void setItem(const int row, const int col, const T &value);
 
     void setItems(const T * value);
+
+    void setItems(const int rows, const int cols, ...);
 
     aghMatrix add(const aghMatrix &matrix) const;
 
@@ -48,7 +51,7 @@ public:
     aghMatrix& operator=(const aghMatrix &matrix);
 
     T operator()(const int row, const int col);
-    
+
 private:
     T **matrixPtr;
     int rows;
