@@ -121,15 +121,27 @@ aghMatrix aghMatrix<T>::multiply(const aghMatrix &matrix) const {
 
 template<class T>
 bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
-    if (this->checkRowCol(row, col))
+    if (this->checkRowCol(matrix.getRows(), matrix.getCols()))
         return false;
-        
+
     for (int i = 0; i < this->rows; ++i)
         for (int j = 0; j < this->cols; ++j)
             if (this->matrixPtr[i][j] != matrix.getItem(i, j))
                 return false;
 
     return true;
+}
+
+template<class T>
+aghMatrix& aghMatrix::overwrite(const aghMatrix &matrix) {
+    if (this->checkRowCol(matrix.getRows(), matrix.getCols()))
+        throw aghException(1, "You tried to overwrite matrix using matrix with wrong dimensions", __FILE__, __LINE__);
+
+    for (int i = 0; i < this->rows; ++i)
+        for (int j = 0; j < this->cols; ++j)
+            this->matrixPtr[i][j] = matrix.getItem(i, j);
+
+    return *this;
 }
 
 template<class T>
@@ -159,5 +171,5 @@ bool aghMatrix<T>::operator!=(const aghMatrix &matrix) const {
 
 template<class T>
 aghMatrix& aghMatrix<T>::operator=(const aghMatrix &matrix) {
-
+    return this->overwrite(matrix);
 }

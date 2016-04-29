@@ -33,6 +33,8 @@ public:
 
     bool equal(const aghMatrix &matrix) const;
 
+    aghMatrix& overwrite(const aghMatrix &matrix); 
+
     aghMatrix operator+(const aghMatrix &matrix) const;
 
     aghMatrix operator-(const aghMatrix &matrix) const;
