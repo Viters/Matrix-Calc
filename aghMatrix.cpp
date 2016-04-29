@@ -36,11 +36,41 @@ void aghMatrix<T>::setItem(const int row, const int col, const T &value) {
 }
 
 template<class T>
-void aghMatrix::setItems(const T *values) {
+void aghMatrix<T>::setItems(const T *values) {
     int elem = 0;
     for (int i = 0; i < this->rows; ++i)
         for (int j = 0; j < this->cols; ++j) {
             this->matrixPtr[i][j] = values[elem];
             elem++;
         }
+}
+
+template<class T>
+aghMatrix aghMatrix<T>::operator+(const aghMatrix &matrix) {
+
+}
+
+template<class T>
+aghMatrix aghMatrix<T>::operator-(const aghMatrix &matrix) {
+
+}
+
+template<class T>
+aghMatrix aghMatrix<T>::operator*(const aghMatrix &matrix) {
+
+}
+
+template<class T>
+bool aghMatrix<T>::operator==(const aghMatrix &matrix) {
+
+}
+
+template<class T>
+bool aghMatrix<T>::operator!=(const aghMatrix &matrix) {
+
+}
+
+template<class T>
+aghMatrix& aghMatrix<T>::operator=(const aghMatrix &matrix) {
+
 }

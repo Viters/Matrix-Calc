@@ -18,6 +18,18 @@ public:
     void setItem(const int row, const int col, const T &value);
 
     void setItems(const T * value);
+
+    aghMatrix operator+(const aghMatrix &matrix);
+
+    aghMatrix operator-(const aghMatrix &matrix);
+
+    aghMatrix operator*(const aghMatrix &matrix);
+
+    bool operator==(const aghMatrix &matrix);
+
+    bool operator!=(const aghMatrix &matrix);
+
+    aghMatrix& operator=(const aghMatrix &matrix);
 private:
     T **matrixPtr;
     int rows;
