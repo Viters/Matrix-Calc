@@ -4,6 +4,7 @@
 #include "aghException.h"
 #include <iostream>
 #include <cstdarg>
+#include "combineCollections.h"
 
 using namespace std;
 

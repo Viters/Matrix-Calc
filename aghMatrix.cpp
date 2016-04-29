@@ -202,20 +202,10 @@ aghMatrix aghMatrix<string>::operator+(constr aghMatrix &matrix) const{
     if (!equalRows || !equalCols)
         throw aghException(1, "Tried to add matrices with wrong dimensions!", __FILE__, __LINE__);
     aghMatrix <string>newMatrix(this->rows, this->cols);
-    string tmp;
-    int i, j, k;
-    int charPos;
+    int i, j;
     for(i=0; i<this->rows; ++i)
         for(j=0; j<this->cols; ++j){
-            tmp=this->getItem(i,j) + matrix.getItem(i,j);
-            for(k=0; k<tmp.length(); k++){
-                charPos=tmp.rfind(tmp[k]);
-                while(charPos!=k){
-                    tmp.erase(charPos,charPos);
-                    charPos=tmp.rfind(tmp[k]);
-                }
-            }
-            newMatrix.setItem(i, j, tmp);
+            newMatrix.setItem(i, j, combineCollections(this->getItem(i,j), matrix.getItem(i,j));
         }
     return newMatrix;
 }
