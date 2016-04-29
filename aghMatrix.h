@@ -15,6 +15,12 @@ public:
 
     ~aghMatrix();
 
+    int getRows() const;
+
+    int getCols() const;
+
+    T getItem(const int row, const int col) const;
+
     void setItem(const int row, const int col, const T &value);
 
     void setItems(const T * value);
@@ -43,7 +49,9 @@ private:
     int rows;
     int cols;
 
-    void createMatrix(int row, int col);
+    void createMatrix(const int row, const int col);
+
+    bool checkRowCol(const int row, const int col) const;
 };
 
 
