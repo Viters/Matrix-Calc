@@ -173,3 +173,8 @@ template<class T>
 aghMatrix& aghMatrix<T>::operator=(const aghMatrix &matrix) {
     return this->overwrite(matrix);
 }
+
+template<class T>
+T aghMatrix<T>::operator()(const int row, const int col) {
+    return this->getItem(row, col);
+}
