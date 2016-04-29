@@ -30,8 +30,6 @@ public:
 
     aghMatrix add(const aghMatrix &matrix) const;
 
-    aghMatrix subtract(const aghMatrix &matrix) const;
-
     aghMatrix multiply(const aghMatrix &matrix) const;
 
     bool equal(const aghMatrix &matrix) const;
@@ -39,8 +37,6 @@ public:
     aghMatrix& overwrite(const aghMatrix &matrix);
 
     aghMatrix operator+(const aghMatrix &matrix) const;
-
-    aghMatrix operator-(const aghMatrix &matrix) const;
 
     aghMatrix operator*(const aghMatrix &matrix) const;
 
