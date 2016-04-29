@@ -194,3 +194,28 @@ template<class T>
 T aghMatrix<T>::operator()(const int row, const int col) {
     return this->getItem(row, col);
 }
+
+template<>
+aghMatrix aghMatrix<string>::operator+(constr aghMatrix &matrix) const{
+    bool equalRows = this->rows == matrix.getRows();
+    bool equalCols = this->cols == matrix.getCols();
+    if (!equalRows || !equalCols)
+        throw aghException(1, "Tried to add matrices with wrong dimensions!", __FILE__, __LINE__);
+    aghMatrix <string>newMatrix(this->rows, this->cols);
+    string tmp;
+    int i, j, k;
+    int charPos;
+    for(i=0; i<this->rows; ++i)
+        for(j=0; j<this->cols; ++j){
+            tmp=this->getItem(i,j) + matrix.getItem(i,j);
+            for(k=0; k<tmp.length(); k++){
+                charPos=tmp.rfind(tmp[k]);
+                while(charPos!=k){
+                    tmp.erase(charPos,charPos);
+                    charPos=tmp.rfind(tmp[k]);
+                }
+            }
+            newMatrix.setItem(i, j, tmp);
+        }
+    return newMatrix;
+}
