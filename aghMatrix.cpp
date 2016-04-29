@@ -87,7 +87,18 @@ aghMatrix aghMatrix<T>::add(const aghMatrix &matrix) const {
 
 template<class T>
 aghMatrix aghMatrix<T>::subtract(const aghMatrix &matrix) const {
+    bool equalRows = this->rows == matrix.getRows();
+    bool equalCols = this->cols == matrix.getCols();
+    if (!equalRows || !equalCols)
+        throw aghException(1, "Tried to subtract matrices with wrong dimensions!", __FILE__, __LINE__);
 
+    aghMatrix <T>newMatrix(this->rows, this->cols);
+
+    for (int i = 0; i < this->rows; ++i)
+        for (int j = 0; j < this->cols; ++j)
+            newMatrix.setItem(i, j, this->matrixPtr[i][j] - matrix->getItem(i, j));
+
+    return newMatrix;
 }
 
 template<class T>
