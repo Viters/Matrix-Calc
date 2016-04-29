@@ -103,7 +103,20 @@ aghMatrix aghMatrix<T>::subtract(const aghMatrix &matrix) const {
 
 template<class T>
 aghMatrix aghMatrix<T>::multiply(const aghMatrix &matrix) const {
+    bool equalDimensions = this->cols == matrix.getRows();
+    if (!equalDimensions)
+        throw aghException(1, "Tried to multiply matrices with wrong dimensions!", __FILE__, __LINE__);
 
+    aghMatrix <T>newMatrix(this->rows, matrix.getCols());
+
+    for (int i = 0; i < this->rows; ++i)
+        for (int j = 0; j < matrix.getCols(); ++j)
+            for (int k = 0; k < this->cols; ++k) {
+                T newValue = newMatrix.getItem(i, j) + this->matrixPtr[i, k] * matrix.getItem(k, j);
+                newMatrix.setItem(i, j, newValue);
+            }
+
+    return newMatrix;
 }
 
 template<class T>
