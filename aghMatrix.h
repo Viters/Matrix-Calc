@@ -162,7 +162,7 @@ aghMatrix<T> aghMatrix<T>::add(const aghMatrix<T> &matrix) const {
 
     for (int i = 0; i < this->rows; ++i)
         for (int j = 0; j < this->cols; ++j)
-            newMatrix.setItem(i, j, this->matrixPtr[i][j] + matrix->getItem(i, j));
+            newMatrix.setItem(i, j, this->matrixPtr[i][j] + matrix.getItem(i, j));
 
     return newMatrix;
 }
@@ -175,10 +175,12 @@ aghMatrix<T> aghMatrix<T>::multiply(const aghMatrix<T> &matrix) const {
 
     aghMatrix<T> newMatrix(this->rows, matrix.getCols());
 
+    T newValue;
+
     for (int i = 0; i < this->rows; ++i)
         for (int j = 0; j < matrix.getCols(); ++j)
             for (int k = 0; k < this->cols; ++k) {
-                T newValue = newMatrix.getItem(i, j) + this->matrixPtr[i, k] * matrix.getItem(k, j);
+                newValue = newMatrix.getItem(i, j) + this->matrixPtr[i][k] * matrix.getItem(k, j);
                 newMatrix.setItem(i, j, newValue);
             }
 
