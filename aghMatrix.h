@@ -41,9 +41,9 @@ public:
 
     aghMatrix operator*(const aghMatrix &matrix) const;
 
-    bool operator==(const aghMatrix &matrix) const;
+    friend bool operator==(const aghMatrix &matrix1, const aghMatrix &matrix2);
 
-    bool operator!=(const aghMatrix &matrix) const;
+    friend bool operator!=(const aghMatrix &matrix1, const aghMatrix &matrix2);
 
     aghMatrix& operator=(const aghMatrix &matrix);
 

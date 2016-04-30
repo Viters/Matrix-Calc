@@ -25,10 +25,10 @@ aghComplex aghComplex::operator*(const aghComplex &another) const{
                        this->im * another.re + this->im * another.re);
 }
 
-bool operator==(const aghComplex &another) const{
-    return (this->re == another.re) && (this->im == another.im);
+bool operator==(const aghComplex &complex1, const aghComplex &complex2) {
+    return (complex1.re == complex2.re) && (complex1.im == complex2.im);
 }
 
-bool operator!=(const aghComplex &another) const{
-    return (this->re != another.re) || (this->im != another.im);
+bool operator!=(const aghComplex &complex1, const aghComplex &complex2) {
+    return (complex1.re != complex2.re) || (complex1.im != complex2.im);
 }

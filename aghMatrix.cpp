@@ -175,14 +175,12 @@ aghMatrix aghMatrix<T>::operator*(const aghMatrix &matrix) const {
     return this->multiply(matrix);
 }
 
-template<class T>
-bool aghMatrix<T>::operator==(const aghMatrix &matrix) const {
-    return this->equal(matrix);
+bool operator==(const aghMatrix &matrix1, const aghMatrix &matrix2) {
+    return matrix1.equal(matrix2);
 }
 
-template<class T>
-bool aghMatrix<T>::operator!=(const aghMatrix &matrix) const {
-    return !(this->equal(matrix));
+bool operator!=(const aghMatrix &matrix1, const aghMatrix &matrix2) {
+    return !(matrix1.equal(matrix2));
 }
 
 template<class T>
