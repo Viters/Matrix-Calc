@@ -41,9 +41,11 @@ public:
 
     aghMatrix operator*(const aghMatrix &matrix) const;
 
-    friend bool operator==(const aghMatrix &matrix1, const aghMatrix &matrix2);
+    template<class Y>
+    friend bool operator==(const aghMatrix<Y> &matrix1, const aghMatrix<Y> &matrix2);
 
-    friend bool operator!=(const aghMatrix &matrix1, const aghMatrix &matrix2);
+    template<class Y>
+    friend bool operator!=(const aghMatrix<Y> &matrix1, const aghMatrix<Y> &matrix2);
 
     aghMatrix& operator=(const aghMatrix &matrix);
 
