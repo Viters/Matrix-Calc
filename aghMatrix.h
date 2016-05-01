@@ -59,6 +59,8 @@ private:
     void createMatrix(const int row, const int col);
 
     bool checkRowCol(const int row, const int col) const;
+
+    void destroyMatrixPtr();
 };
 
 template<typename T>
@@ -73,6 +75,13 @@ aghMatrix<T>::aghMatrix(int rows, int cols) : matrixPtr(nullptr) {
 
 template<typename T>
 aghMatrix<T>::~aghMatrix() {
+    for (int i = 0; i < this->rows; i++)
+        delete[] matrixPtr[i];
+    delete[] matrixPtr;
+}
+
+template<typename T>
+aghMatrix<T>::destroyMatrixPtr() {
     for (int i = 0; i < this->rows; i++)
         delete[] matrixPtr[i];
     delete[] matrixPtr;
@@ -135,9 +144,12 @@ void aghMatrix<T>::setItems(const T *values) {
 template<typename T>
 template<typename... ARGS>
 void aghMatrix<T>::setItems(const int rows, const int cols, ARGS... args) {
-    int elemNum = rows * cols;
-    if (elemNum > this->rows * this->cols)
-        throw aghException(2, "Too many items for that matrix to hold", __FILE__, __LINE__);
+    if (matrixPtr) this->destroyMatrixPtr();
+
+    createMatrix(rows, cols);
+
+    this->rows = rows;
+    this->cols = cols;
 
     array<T, sizeof...(args)>unpacked_args {args...};
 
