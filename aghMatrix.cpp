@@ -17,12 +17,12 @@ aghMatrix<char> aghMatrix<char>::add(const aghMatrix<char> &matrix) const {
 }
 
 template<>
-aghMatrix<std::string> aghMatrix<std::string>::add(const aghMatrix<std::string> &matrix) const{
+aghMatrix<string> aghMatrix<string>::add(const aghMatrix<string> &matrix) const{
     bool equalRows = this->rows == matrix.getRows();
     bool equalCols = this->cols == matrix.getCols();
     if (!equalRows || !equalCols)
         throw aghException(1, "Tried to add matrices with wrong dimensions!", __FILE__, __LINE__);
-    aghMatrix<std::string> newMatrix(this->rows, this->cols);
+    aghMatrix<string> newMatrix(this->rows, this->cols);
     int i, j;
     for(i=0; i<this->rows; ++i)
         for(j=0; j<this->cols; ++j){
@@ -32,13 +32,13 @@ aghMatrix<std::string> aghMatrix<std::string>::add(const aghMatrix<std::string> 
 }
 
 template<>
-aghMatrix<std::string> aghMatrix<std::string>::multiply(const aghMatrix<std::string> &matrix) const{
+aghMatrix<string> aghMatrix<string>::multiply(const aghMatrix<string> &matrix) const{
     bool correctDimensions = this->cols == matrix.getRows();
     if(!correctDimensions)
         throw aghException(1, "Tried to multiply matrices with wrong dimensions!", __FILE__, __LINE__);
-    aghMatrix<std::string> newMatrix(this->rows, matrix.getCols());
+    aghMatrix<string> newMatrix(this->rows, matrix.getCols());
     int i, j, k;
-    std::string tmp;
+    string tmp;
     for(i =0; i<this->rows; i++)
         for(j=0; j<matrix.getCols(); j++){
             tmp="";

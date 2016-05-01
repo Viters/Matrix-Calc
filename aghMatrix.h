@@ -3,7 +3,7 @@
 
 #include "aghException.h"
 #include <iostream>
-#include <cstdarg>
+#include <tuple>
 #include "combineCollections.h"
 
 using namespace std;
@@ -27,7 +27,7 @@ public:
 
     void setItems(const T * value);
 
-    void setItems(const int rows, const int cols, ...);
+    template<typename... ARGS> void setItems(const int rows, const int cols, ARGS... args);
 
     aghMatrix add(const aghMatrix &matrix) const;
 
@@ -133,20 +133,25 @@ void aghMatrix<T>::setItems(const T *values) {
 }
 
 template<typename T>
-void aghMatrix<T>::setItems(const int rows, const int cols, ...) {
+template<typename... ARGS>
+void aghMatrix<T>::setItems(const int rows, const int cols, ARGS... args) {
     int elemNum = rows * cols;
     if (elemNum > this->rows * this->cols)
         throw aghException(2, "Too many items for that matrix to hold", __FILE__, __LINE__);
 
-    va_list ap;
-    va_start(ap, cols);
+    array<size_t, sizeof...(args)>unpacked_args {args...};
 
-    int elem = 0;
-    for (int i = 0; i < this->rows && elem < elemNum; ++i)
-        for (int j = 0; j < this->cols && elem < elemNum; ++j) {
-            this->matrixPtr[i][j] = va_arg(ap, T);
-            elem++;
+    int row = 0;
+    int col = 0;
+    for (size_t arg : unpacked_args)
+    {
+        this->matrixPtr[row][col] = arg;
+        col++;
+        if (col == this->cols) {
+            row++;
+            col = 0;
         }
+    }
 
     return;
 }
@@ -167,6 +172,12 @@ aghMatrix<T> aghMatrix<T>::add(const aghMatrix<T> &matrix) const {
     return newMatrix;
 }
 
+template<>
+aghMatrix<char> aghMatrix<char>::add(const aghMatrix<char> &matrix) const;
+
+template<>
+aghMatrix<string> aghMatrix<string>::add(const aghMatrix<string> &matrix) const;
+
 template<typename T>
 aghMatrix<T> aghMatrix<T>::multiply(const aghMatrix<T> &matrix) const {
     bool equalDimensions = this->cols == matrix.getRows();
@@ -186,6 +197,9 @@ aghMatrix<T> aghMatrix<T>::multiply(const aghMatrix<T> &matrix) const {
 
     return newMatrix;
 }
+
+template<>
+aghMatrix<string> aghMatrix<string>::multiply(const aghMatrix<string> &matrix) const;
 
 template<typename T>
 bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
