@@ -80,7 +80,7 @@ aghMatrix<T>::~aghMatrix() {
 
 template<typename T>
 void aghMatrix<T>::createMatrix(const int rows, const int cols) {
-    this->matrixPtr = new T *[rows];
+    this->matrixPtr = new T*[rows];
     for (int i = 0; i < rows; i++)
         this->matrixPtr[i] = new T[cols];
     this->rows = rows;
@@ -139,11 +139,11 @@ void aghMatrix<T>::setItems(const int rows, const int cols, ARGS... args) {
     if (elemNum > this->rows * this->cols)
         throw aghException(2, "Too many items for that matrix to hold", __FILE__, __LINE__);
 
-    array<size_t, sizeof...(args)>unpacked_args {args...};
+    array<T, sizeof...(args)>unpacked_args {args...};
 
     int row = 0;
     int col = 0;
-    for (size_t arg : unpacked_args)
+    for (T arg : unpacked_args)
     {
         this->matrixPtr[row][col] = arg;
         col++;
