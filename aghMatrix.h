@@ -81,7 +81,7 @@ aghMatrix<T>::~aghMatrix() {
 }
 
 template<typename T>
-aghMatrix<T>::destroyMatrixPtr() {
+void aghMatrix<T>::destroyMatrixPtr() {
     for (int i = 0; i < this->rows; i++)
         delete[] matrixPtr[i];
     delete[] matrixPtr;
