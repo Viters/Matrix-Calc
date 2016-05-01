@@ -29,17 +29,17 @@ public:
 
     template<typename... ARGS> void setItems(const int rows, const int cols, ARGS... args);
 
-    aghMatrix add(const aghMatrix &matrix) const;
+    aghMatrix<T> add(const aghMatrix<T> &matrix) const;
 
-    aghMatrix multiply(const aghMatrix &matrix) const;
+    aghMatrix<T> multiply(const aghMatrix<T> &matrix) const;
 
-    bool equal(const aghMatrix &matrix) const;
+    bool equal(const aghMatrix<T> &matrix) const;
 
-    aghMatrix& overwrite(const aghMatrix &matrix);
+    aghMatrix<T>& overwrite(const aghMatrix<T> &matrix);
 
-    aghMatrix operator+(const aghMatrix &matrix) const;
+    aghMatrix<T> operator+(const aghMatrix<T> &matrix) const;
 
-    aghMatrix operator*(const aghMatrix &matrix) const;
+    aghMatrix<T> operator*(const aghMatrix<T> &matrix) const;
 
     template<typename Y>
     friend bool operator==(const aghMatrix<Y> &matrix1, const aghMatrix<Y> &matrix2);
@@ -47,7 +47,7 @@ public:
     template<typename Y>
     friend bool operator!=(const aghMatrix<Y> &matrix1, const aghMatrix<Y> &matrix2);
 
-    aghMatrix& operator=(const aghMatrix &matrix);
+    aghMatrix<T>& operator=(const aghMatrix<T> &matrix);
 
     T operator()(const int row, const int col);
 
@@ -255,8 +255,5 @@ template<typename T>
 T aghMatrix<T>::operator()(const int row, const int col) {
     return this->getItem(row, col);
 }
-
-
-
 
 #endif
