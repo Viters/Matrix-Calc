@@ -15,6 +15,8 @@ public:
 
     aghMatrix(const int rows, const int cols);
 
+    aghMatrix(const aghMatrix<T> &matrix);
+
     ~aghMatrix();
 
     int getRows() const;
@@ -74,6 +76,14 @@ aghMatrix<T>::aghMatrix(int rows, int cols) : matrixPtr(nullptr) {
 }
 
 template<typename T>
+aghMatrix<T>::aghMatrix(const aghMatrix<T> &matrix) {
+    this->createMatrix(matrix.getRows(), matrix.getCols());
+    for(int i=0; i<matrix.getRows(); i++)
+        for(int j=0; j<matrix.getCols(); j++)
+            this->matrixPtr[i][j]=matrix.getItem(i,j);
+}
+
+template<typename T>
 aghMatrix<T>::~aghMatrix() {
     for (int i = 0; i < this->rows; i++)
         delete[] matrixPtr[i];
@@ -98,8 +108,8 @@ void aghMatrix<T>::createMatrix(const int rows, const int cols) {
 
 template<typename T>
 bool aghMatrix<T>::checkRowCol(const int row, const int col) const {
-    bool rowInRange = (row > 0) && (row < this->rows);
-    bool colInRange = (col > 0) && (col < this->cols);
+    bool rowInRange = (row >= 0) && (row < this->rows);
+    bool colInRange = (col >= 0) && (col < this->cols);
     if (!rowInRange || !colInRange) return true;
     return false;
 }
@@ -228,8 +238,9 @@ bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
 
 template<typename T>
 aghMatrix<T>& aghMatrix<T>::overwrite(const aghMatrix<T> &matrix) {
-    if (this->checkRowCol(matrix.getRows(), matrix.getCols()))
-        throw aghException(1, "You tried to overwrite matrix using matrix with wrong dimensions", __FILE__, __LINE__);
+    this->destroyMatrixPtr();
+
+    this->createMatrix(matrix.getRows(), matrix.getCols());
 
     for (int i = 0; i < this->rows; ++i)
         for (int j = 0; j < this->cols; ++j)
