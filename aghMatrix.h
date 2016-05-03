@@ -240,13 +240,16 @@ bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
 
 template<typename T>
 aghMatrix<T>& aghMatrix<T>::overwrite(const aghMatrix<T> &matrix) {
-    if (matrixPtr) this->destroyMatrixPtr();
+    if (this->matrixPtr != matrix.matrixPtr) {
 
-    this->createMatrix(matrix.getRows(), matrix.getCols());
+        if (matrixPtr) this->destroyMatrixPtr();
 
-    for (int i = 0; i < this->rows; ++i)
-        for (int j = 0; j < this->cols; ++j)
-            this->matrixPtr[i][j] = matrix.getItem(i, j);
+        this->createMatrix(matrix.getRows(), matrix.getCols());
+
+        for (int i = 0; i < this->rows; ++i)
+            for (int j = 0; j < this->cols; ++j)
+                this->matrixPtr[i][j] = matrix.getItem(i, j);
+    }
 
     return *this;
 }
