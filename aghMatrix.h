@@ -4,8 +4,7 @@
 #include "aghException.h"
 #include <iostream>
 #include <tuple>
-#include "combineCollections.h"
-#include "intersectCollections.h"
+#include "stringHelper.h"
 
 using namespace std;
 
