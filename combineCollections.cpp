@@ -7,7 +7,7 @@ string combineCollections(const string &a, const string &b){
     for(int i=0; i<tmp.length(); i++){
         charPos=tmp.rfind(tmp[i]);
         while(charPos!=i){
-            tmp.erase(charPos, charPos);
+            tmp.erase(charPos, 1);
             charPos=tmp.rfind(tmp[i]);
         }
     }
