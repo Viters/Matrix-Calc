@@ -5,6 +5,7 @@
 #include <iostream>
 #include <tuple>
 #include "combineCollections.h"
+#include "intersectCollections.h"
 
 using namespace std;
 

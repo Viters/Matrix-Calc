@@ -43,7 +43,7 @@ aghMatrix<string> aghMatrix<string>::multiply(const aghMatrix<string> &matrix) c
         for(j=0; j<matrix.getCols(); j++){
             tmp="";
             for(k=0; k<this->cols; k++){
-                tmp=combineCollections(tmp, combineCollections(this->matrixPtr[i][k], matrix.getItem(k, j)));
+                tmp=combineCollections(tmp, intersectCollections(this->matrixPtr[i][k], matrix.getItem(k, j)));
             }
             newMatrix.setItem(i, j, tmp);
         }
