@@ -227,7 +227,7 @@ aghMatrix<string> aghMatrix<string>::multiply(const aghMatrix<string> &matrix) c
 
 template<typename T>
 bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
-    if (this->checkRowCol(matrix.getRows(), matrix.getCols()))
+    if (this->rows != matrix.getRows() || this->cols != matrix.getCols())
         return false;
 
     for (int i = 0; i < this->rows; ++i)
