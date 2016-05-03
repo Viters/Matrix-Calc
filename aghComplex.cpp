@@ -24,7 +24,7 @@ aghComplex aghComplex::operator-(const aghComplex &another) const{
 
 aghComplex aghComplex::operator*(const aghComplex &another) const{
     return aghComplex( this->re * another.re - this->im * another.im,
-                       this->im * another.re + this->im * another.re);
+                       this->im * another.re + this->re * another.im);
 }
 
 bool operator==(const aghComplex &complex1, const aghComplex &complex2) {
