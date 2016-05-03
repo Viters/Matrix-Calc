@@ -19,6 +19,8 @@ public:
 
     ~aghMatrix();
 
+    void print() const;
+
     int getRows() const;
 
     int getCols() const;
@@ -64,6 +66,17 @@ private:
 
     void destroyMatrixPtr();
 };
+
+template<typename T>
+void aghMatrix<T>::print() const{
+    for(int i=0; i<this->rows; i++){
+        for(int j=0; j<this->cols; j++)
+            cout<<this->matrixPtr[i][j]<<" ";
+        cout<<endl;
+    }
+}
+
+
 
 template<typename T>
 aghMatrix<T>::aghMatrix() : matrixPtr(nullptr) {
@@ -212,12 +225,13 @@ aghMatrix<T> aghMatrix<T>::multiply(const aghMatrix<T> &matrix) const {
 
     T newValue;
 
-    for (int i = 0; i < this->rows; ++i)
-        for (int j = 0; j < matrix.getCols(); ++j)
-            for (int k = 0; k < this->cols; ++k) {
-                newValue = newMatrix.getItem(i, j) + this->matrixPtr[i][k] * matrix.getItem(k, j);
-                newMatrix.setItem(i, j, newValue);
-            }
+   for (int i = 0; i < this->rows; ++i)
+        for (int j = 0; j < matrix.getCols(); ++j) {
+          newValue = T(0);
+          for (int k = 0; k < this->cols; ++k)
+              newValue = newValue + this->matrixPtr[i][k] * matrix.getItem(k, j);
+          newMatrix.setItem(i, j, newValue);
+        }
 
     return newMatrix;
 }
