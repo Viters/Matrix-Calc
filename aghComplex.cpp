@@ -4,6 +4,8 @@ aghComplex::aghComplex() : re(0), im(0) {}
 
 aghComplex::aghComplex(const double re, const double im) : re(re), im(im) {}
 
+aghComplex::aghComplex(const double re): re(re), im(0){}
+
 double aghComplex::getRe() const{
     return this->re;
 }

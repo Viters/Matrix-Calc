@@ -8,6 +8,7 @@ private:
 public:
     aghComplex();
     aghComplex(const double re, const double im);
+    aghComplex(const double re);
     double getRe() const;
     double getIm() const;
     aghComplex operator+(const aghComplex &another) const;
