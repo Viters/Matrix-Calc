@@ -76,7 +76,7 @@ aghMatrix<T>::aghMatrix(int rows, int cols) : matrixPtr(nullptr) {
 }
 
 template<typename T>
-aghMatrix<T>::aghMatrix(const aghMatrix<T> &matrix) {
+aghMatrix<T>::aghMatrix(const aghMatrix<T> &matrix) : matrixPtr(nullptr) {
     this->createMatrix(matrix.getRows(), matrix.getCols());
     for(int i=0; i<matrix.getRows(); i++)
         for(int j=0; j<matrix.getCols(); j++)
@@ -85,9 +85,11 @@ aghMatrix<T>::aghMatrix(const aghMatrix<T> &matrix) {
 
 template<typename T>
 aghMatrix<T>::~aghMatrix() {
-    for (int i = 0; i < this->rows; i++)
-        delete[] matrixPtr[i];
-    delete[] matrixPtr;
+    if (this->matrixPtr != nullptr)
+        this->destroyMatrixPtr();
+    this->matrixPtr=nullptr;
+    this->rows=0;
+    this->cols=0;
 }
 
 template<typename T>
@@ -238,7 +240,7 @@ bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
 
 template<typename T>
 aghMatrix<T>& aghMatrix<T>::overwrite(const aghMatrix<T> &matrix) {
-    this->destroyMatrixPtr();
+    if (matrixPtr) this->destroyMatrixPtr();
 
     this->createMatrix(matrix.getRows(), matrix.getCols());
 
