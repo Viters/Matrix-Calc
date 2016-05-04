@@ -393,9 +393,9 @@ bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
 
 template<typename T>
 aghMatrix<T> &aghMatrix<T>::overwrite(const aghMatrix<T> &matrix) {
-    if (this->matrixPtr != matrix.matrixPtr) {
+    if (this != &matrix) {
 
-        if (matrixPtr) this->destroyMatrixPtr();
+        if (this->matrixPtr) this->destroyMatrixPtr();
 
         this->createMatrix(matrix.getRows(), matrix.getCols());
 
