@@ -1,5 +1,7 @@
 #include "stringHelper.h"
 
+// --------------------------------------------------------------
+
 string combineCollections(const string &a, const string &b){
     string tmp;
     tmp=a+b;
@@ -14,6 +16,8 @@ string combineCollections(const string &a, const string &b){
     return tmp;
 }
 
+// --------------------------------------------------------------
+
 string intersectCollections(const string &a, const string &b) {
     string res="";
     for(int i=0; i<a.length(); i++){
@@ -22,3 +26,5 @@ string intersectCollections(const string &a, const string &b) {
     }
     return res;
 }
+
+// --------------------------------------------------------------
