@@ -373,7 +373,6 @@ aghMatrix<char> aghMatrix<char>::multiply(const aghMatrix<char> &matrix) const;
 /// This method calculates intersection of letter's sets within corresponding elements
 /// utilizing usual matrix multiplication alghoritm.
 ///
-///
 /// \return Matrix with string elements
 template<>
 aghMatrix<string> aghMatrix<string>::multiply(const aghMatrix<string> &matrix) const;
