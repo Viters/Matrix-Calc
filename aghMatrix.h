@@ -29,9 +29,10 @@ public:
 
     void setItem(const int row, const int col, const T &value);
 
-    void setItems(const T * value);
+    void setItems(const T *value);
 
-    template<typename... ARGS> void setItems(const int rows, const int cols, ARGS... args);
+    template<typename... ARGS>
+    void setItems(const int rows, const int cols, ARGS... args);
 
     aghMatrix<T> add(const aghMatrix<T> &matrix) const;
 
@@ -39,7 +40,7 @@ public:
 
     bool equal(const aghMatrix<T> &matrix) const;
 
-    aghMatrix<T>& overwrite(const aghMatrix<T> &matrix);
+    aghMatrix<T> &overwrite(const aghMatrix<T> &matrix);
 
     aghMatrix<T> operator+(const aghMatrix<T> &matrix) const;
 
@@ -51,7 +52,7 @@ public:
     template<typename Y>
     friend bool operator!=(const aghMatrix<Y> &matrix1, const aghMatrix<Y> &matrix2);
 
-    aghMatrix<T>& operator=(const aghMatrix<T> &matrix);
+    aghMatrix<T> &operator=(const aghMatrix<T> &matrix);
 
     T operator()(const int row, const int col);
 
@@ -68,14 +69,13 @@ private:
 };
 
 template<typename T>
-void aghMatrix<T>::print() const{
-    for(int i=0; i<this->rows; i++){
-        for(int j=0; j<this->cols; j++)
-            cout<<this->matrixPtr[i][j]<<" ";
-        cout<<endl;
+void aghMatrix<T>::print() const {
+    for (int i = 0; i < this->rows; i++) {
+        for (int j = 0; j < this->cols; j++)
+            cout << this->matrixPtr[i][j] << " ";
+        cout << endl;
     }
 }
-
 
 
 template<typename T>
@@ -91,18 +91,18 @@ aghMatrix<T>::aghMatrix(int rows, int cols) : matrixPtr(nullptr) {
 template<typename T>
 aghMatrix<T>::aghMatrix(const aghMatrix<T> &matrix) : matrixPtr(nullptr) {
     this->createMatrix(matrix.getRows(), matrix.getCols());
-    for(int i=0; i<matrix.getRows(); i++)
-        for(int j=0; j<matrix.getCols(); j++)
-            this->matrixPtr[i][j]=matrix.getItem(i,j);
+    for (int i = 0; i < matrix.getRows(); i++)
+        for (int j = 0; j < matrix.getCols(); j++)
+            this->matrixPtr[i][j] = matrix.getItem(i, j);
 }
 
 template<typename T>
 aghMatrix<T>::~aghMatrix() {
     if (this->matrixPtr != nullptr)
         this->destroyMatrixPtr();
-    this->matrixPtr=nullptr;
-    this->rows=0;
-    this->cols=0;
+    this->matrixPtr = nullptr;
+    this->rows = 0;
+    this->cols = 0;
 }
 
 template<typename T>
@@ -114,7 +114,7 @@ void aghMatrix<T>::destroyMatrixPtr() {
 
 template<typename T>
 void aghMatrix<T>::createMatrix(const int rows, const int cols) {
-    this->matrixPtr = new T*[rows];
+    this->matrixPtr = new T *[rows];
     for (int i = 0; i < rows; i++)
         this->matrixPtr[i] = new T[cols];
     this->rows = rows;
@@ -176,12 +176,11 @@ void aghMatrix<T>::setItems(const int rows, const int cols, ARGS... args) {
     this->rows = rows;
     this->cols = cols;
 
-    array<T, sizeof...(args)>unpacked_args {args...};
+    array<T, sizeof...(args)> unpacked_args{args...};
 
     int row = 0;
     int col = 0;
-    for (T arg : unpacked_args)
-    {
+    for (T arg : unpacked_args) {
         this->matrixPtr[row][col] = arg;
         col++;
         if (col == this->cols) {
@@ -225,16 +224,19 @@ aghMatrix<T> aghMatrix<T>::multiply(const aghMatrix<T> &matrix) const {
 
     T newValue;
 
-   for (int i = 0; i < this->rows; ++i)
+    for (int i = 0; i < this->rows; ++i)
         for (int j = 0; j < matrix.getCols(); ++j) {
-          newValue = T(0);
-          for (int k = 0; k < this->cols; ++k)
-              newValue = newValue + this->matrixPtr[i][k] * matrix.getItem(k, j);
-          newMatrix.setItem(i, j, newValue);
+            newValue = T(0);
+            for (int k = 0; k < this->cols; ++k)
+                newValue = newValue + this->matrixPtr[i][k] * matrix.getItem(k, j);
+            newMatrix.setItem(i, j, newValue);
         }
 
     return newMatrix;
 }
+
+template<>
+aghMatrix<char> aghMatrix<char>::multiply(const aghMatrix<char> &matrix) const;
 
 template<>
 aghMatrix<string> aghMatrix<string>::multiply(const aghMatrix<string> &matrix) const;
@@ -253,7 +255,7 @@ bool aghMatrix<T>::equal(const aghMatrix &matrix) const {
 }
 
 template<typename T>
-aghMatrix<T>& aghMatrix<T>::overwrite(const aghMatrix<T> &matrix) {
+aghMatrix<T> &aghMatrix<T>::overwrite(const aghMatrix<T> &matrix) {
     if (this->matrixPtr != matrix.matrixPtr) {
 
         if (matrixPtr) this->destroyMatrixPtr();
@@ -289,7 +291,7 @@ bool operator!=(const aghMatrix<Y> &matrix1, const aghMatrix<Y> &matrix2) {
 }
 
 template<typename T>
-aghMatrix<T>& aghMatrix<T>::operator=(const aghMatrix<T> &matrix) {
+aghMatrix<T> &aghMatrix<T>::operator=(const aghMatrix<T> &matrix) {
     return this->overwrite(matrix);
 }
 
