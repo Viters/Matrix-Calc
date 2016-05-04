@@ -1,5 +1,7 @@
 #include "aghMatrix.h"
 
+// --------------------------------------------------------------
+
 /// \brief Specialisation of add() method for char type.
 ///
 /// This method calculates sum of chars interpreting them as natural numbers.
