@@ -107,3 +107,4 @@ aghMatrix<string> aghMatrix<string>::multiply(const aghMatrix<string> &matrix) c
     return newMatrix;
 }
 
+// --------------------------------------------------------------

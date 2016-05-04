@@ -453,4 +453,6 @@ T aghMatrix<T>::operator()(const int row, const int col) {
     return this->getItem(row, col);
 }
 
+// --------------------------------------------------------------
+
 #endif
