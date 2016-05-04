@@ -311,13 +311,23 @@ aghMatrix<T> aghMatrix<T>::add(const aghMatrix<T> &matrix) const {
 
 // --------------------------------------------------------------
 
-// Specialisation of add() method for char type.
+/// \brief Specialisation of add() method for char type.
+///
+/// This method calculates sum of chars interpreting them as natural numbers.
+/// (a = 0, b = 1, c = 2 etc.) Result is calculated as modulo of 26, so "z + z" will
+/// still yield letter from <a, z>.
+///
+/// \return Matrix with char elements
 template<>
 aghMatrix<char> aghMatrix<char>::add(const aghMatrix<char> &matrix) const;
 
 // --------------------------------------------------------------
 
-// Specialisation of add() method for string type.
+/// \brief Specialisation of add() method for string type.
+///
+/// This method calculates sum of letter's sets within corresponding elements.
+///
+/// \return Matrix with string elements
 template<>
 aghMatrix<string> aghMatrix<string>::add(const aghMatrix<string> &matrix) const;
 
@@ -346,13 +356,25 @@ aghMatrix<T> aghMatrix<T>::multiply(const aghMatrix<T> &matrix) const {
 
 // --------------------------------------------------------------
 
-// Specialisation of multiply() method for char type.
+/// \brief Specialisation of multiply() method for char type.
+///
+/// This method calculates multiplication of chars interpreting them as natural numbers,
+/// (a = 0, b = 1, c = 2 etc.) utilizing usual matrix multiplication alghoritm.
+/// Result is calculated as modulo of 26, so "z * z" will still yield letter from <a, z>.
+///
+/// \return Matrix with char elements
 template<>
 aghMatrix<char> aghMatrix<char>::multiply(const aghMatrix<char> &matrix) const;
 
 // --------------------------------------------------------------
 
-// Specialisation of multiply() method for string type.
+/// \brief Specialisation of add() method for string type.
+///
+/// This method calculates intersection of letter's sets within corresponding elements
+/// utilizing usual matrix multiplication alghoritm.
+///
+///
+/// \return Matrix with string elements
 template<>
 aghMatrix<string> aghMatrix<string>::multiply(const aghMatrix<string> &matrix) const;
 
