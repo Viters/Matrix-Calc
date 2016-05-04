@@ -12,7 +12,7 @@ using namespace std;
 * \class aghMatrix
 * \authors Łukasz Mielczarek, Łukasz Szcześniak
 * \date
-* \brief The definition of aghMatrix template class that provides interface for matrix operations
+* \brief The declaration of aghMatrix template class that provides interface for matrix operations
 */
 template<typename T>
 class aghMatrix {

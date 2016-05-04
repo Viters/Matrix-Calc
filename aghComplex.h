@@ -6,7 +6,7 @@
 * \class aghComplex
 * \authors Łukasz Mielczarek, Łukasz Szcześniak
 * \date 
-* \brief The definition of aghComplex class that allow for using complex number
+* \brief The declaration of aghComplex class that allow for using complex number
 */
 class aghComplex{
 private:
