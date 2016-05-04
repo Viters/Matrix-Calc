@@ -152,7 +152,7 @@ aghMatrix<T>::aghMatrix(const aghMatrix<T> &matrix) : matrixPtr(nullptr) {
 
 template<typename T>
 aghMatrix<T>::~aghMatrix() {
-    if (this->matrixPtr != nullptr)
+    if (!this->matrixPtr)
         this->destroyMatrixPtr();
     this->matrixPtr = nullptr;
     this->rows = 0;
