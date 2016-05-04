@@ -272,9 +272,6 @@ void aghMatrix<T>::setItems(const int rows, const int cols, ARGS... args) {
 
     createMatrix(rows, cols);
 
-    this->rows = rows;
-    this->cols = cols;
-
     array<T, sizeof...(args)> unpacked_args{args...}; // where all magic happens
 
     int row = 0;
