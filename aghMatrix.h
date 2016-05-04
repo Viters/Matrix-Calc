@@ -163,6 +163,9 @@ aghMatrix<T>::~aghMatrix() {
 
 template<typename T>
 void aghMatrix<T>::createMatrix(const int rows, const int cols) {
+    if (rows <= 0 || cols <= 0)
+        throw aghException(2, "Tried to construct matrix with invalid dimensions!", __FILE__, __LINE__);
+
     this->matrixPtr = new T *[rows];
     for (int i = 0; i < rows; i++)
         this->matrixPtr[i] = new T[cols];
@@ -192,8 +195,7 @@ template<typename T>
 bool aghMatrix<T>::isInRange(const int row, const int col) const {
     bool rowInRange = (row >= 0) && (row < this->rows);
     bool colInRange = (col >= 0) && (col < this->cols);
-    if (!rowInRange || !colInRange) return true;
-    return false;
+    return !rowInRange || !colInRange;
 }
 
 // --------------------------------------------------------------
